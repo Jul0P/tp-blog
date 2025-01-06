@@ -1,0 +1,4 @@
+echo "linting..."
+pnpm lint
+echo "building app..."
+pnpm build

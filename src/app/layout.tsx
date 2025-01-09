@@ -1,3 +1,7 @@
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import MaxWidthWrapper from "@/components/layout/MaxWidthWrapper";
+import { SearchProvider } from "@/context/SearchContext";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -13,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "TP Blog",
-    description: "Site for TP's blog",
+    title: "HotCoffee",
+    description: "TP Blog",
 };
 
 export default function RootLayout({
@@ -23,8 +27,16 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="fr">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+        <html lang="fr" className="scroll-smooth">
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+                <MaxWidthWrapper className="px-4">
+                    <SearchProvider>
+                        <Header />
+                        {children}
+                    </SearchProvider>
+                </MaxWidthWrapper>
+                <Footer />
+            </body>
         </html>
     );
 }
